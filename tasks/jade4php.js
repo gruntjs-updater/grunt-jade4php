@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      pretty: false,
+      pretty: true,
       filename: 'default'
     });
 
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         }
       }).map(function(filepath) {
         // Read file source.
-        var html = jade4PHP(grunt.file.read(f), options);
+        var html = jade4PHP(grunt.file.read(filepath), options);
         if (html.length < 1) {
           grunt.log.warn('Destination not written because Template file was empty.');
         } else {
