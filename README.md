@@ -24,11 +24,12 @@ In your project's Gruntfile, add a section named `jade4php` to the data object p
 
 ```js
 grunt.initConfig({
+  pkg: grunt.file.readJSON('package.json'),
   jade4php: {
     options: {
       // Task-specific options go here.
     },
-    your_target: {
+    compile: {
       // Target-specific file lists and/or options go here.
     },
   },
@@ -37,49 +38,29 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### pretty
 
-A string value that is used to do something with whatever.
+Type: `Boolean`
+Default: `false`
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+Adds whitespace to the resulting html to make it easier for a human to read.
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
+#### Compile all contents of a release directory and add a `.phtml` extension
 ```js
-grunt.initConfig({
-  jade4php: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+jad4php: {
+  options: {
+    pretty: true
   },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  jade4php: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
+  compile: {
+    expand: true,
+    cwd: 'release/jade/',
+    src: ['*.jade'],
+    dest: 'release/phtml/',
+    ext: '.phtml'
+  }
+}
 ```
 
 ## Contributing
