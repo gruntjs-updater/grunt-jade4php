@@ -29,9 +29,7 @@ grunt.initConfig({
     options: {
       // Task-specific options go here.
     },
-    compile: {
-      // Target-specific file lists and/or options go here.
-    },
+    // Target-specific file lists and/or options go here.
   },
 });
 ```
@@ -53,13 +51,11 @@ jad4php: {
   options: {
     pretty: true
   },
-  compile: {
-    expand: true,
-    cwd: 'release/jade/',
-    src: ['*.jade'],
-    dest: 'release/phtml/',
-    ext: '.phtml'
-  }
+  expand: true,
+  cwd: 'release/jade/',
+  src: ['*.jade'],
+  dest: 'release/phtml/',
+  ext: '.phtml'
 }
 ```
 

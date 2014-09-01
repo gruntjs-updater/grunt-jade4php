@@ -1,0 +1,32 @@
+doctype html
+//- normal jade variable
+- title = 'Example & Test';
+//- php function call to format an escaped 
+//- echo statement of expression argument
+- test = php('$test_var + 1');
+//- php function call to format an echo 
+//- statement of expression argument without escape prcessing
+- bad = php('$foo', true);
+html
+  head
+    // normal jade interpolation
+    title #{title}
+  body
+    // php filter
+    :php if ($test == 1):
+    p PHP variable $test has value of 1
+    :php else:
+    p PHP variable $test has some other value
+    :php endif;
+    p
+      :php(echo) 'SINGLE LINE <echo> with escape'
+    // normal jade interpolation
+    p.
+      This way is shortest if you need big !{test}
+      blocks of text spanning multiple
+      lines.
+    // note that these interpolations of PHP strings must not be escaped
+    p!= test
+    p!= bad
+    // what happens when the PHP string is escaped
+    p= test

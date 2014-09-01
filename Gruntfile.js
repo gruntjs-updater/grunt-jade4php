@@ -25,26 +25,20 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp']
+      tests: ['test/tmp/*.phtml']
     },
 
     // Configuration to be run (and then tested).
     jade4php: {
       default_options: {
         options: {
+          pretty: true
         },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+        expand: true,
+        cwd: 'test/source',
+        src: ['*.jade'],
+        dest: 'test/tmp',
+        ext: '.phtml'
       }
     },
 
@@ -69,5 +63,7 @@ module.exports = function(grunt) {
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
+
+  grunt.registerTask('mytest', ['jade4php']);
 
 };

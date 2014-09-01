@@ -33,7 +33,7 @@ module.exports = function(grunt) {
         }
       }).map(function(filepath) {
         // Read file source.
-        var html = jade4PHP(grunt.file.read(filepath), options);
+        var html = j4PHP(grunt.file.read(filepath), options);
         if (html.length < 1) {
           grunt.log.warn('Destination not written because Template file was empty.');
         } else {
@@ -48,7 +48,8 @@ module.exports = function(grunt) {
 
   var jade = require('jade');
   require('jade4php')(jade);
-  var jade4PHP = function (source, options) {
+
+  var j4PHP = function (source, options) {
       try {
           return jade.render(source, options);
       } catch (e) {
